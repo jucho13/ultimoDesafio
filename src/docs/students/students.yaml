@@ -1,2 +1,78 @@
 #Students Swagger API Documentation
 #TODO: Agregar documentación del API.
+
+paths:
+  /api/students/:
+    get:
+      summary: Obtiene todos los estudiantes
+      tags:
+        - Students
+      responses:
+        "200":
+          description: La operacion fue exitosa!, se renderiza.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#components/schemas/student'
+        "400":
+          description: Se envió un dato no esperado.
+        "500":
+          description: Error inesperado del servidor, no se puede manejar el proceso.
+  
+  /api/students:
+    post:
+      summary: Se envia un student para guardarlo en la api
+      tags:
+        - Students
+      responses:
+        "201":
+          description: La operacion fue exitosa!
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#components/schemas/student'
+        "400":
+          description: Se envió un dato no esperado.
+        "500":
+          description: Error inesperado del servidor, no se puede manejar el proceso.
+  
+  
+components:
+  schemas:
+    student:
+      type: object
+      properties:
+        _id:
+          type: ObjectId
+          description: Id autogenerado de Mongo.
+        name: 
+          type: String
+          description: nombre del alumno
+        lastName:
+          type: String
+          description: apellido del alumno
+        email:
+          type: String
+          description: email del alumno
+        age:
+          type: Number
+          description: edad del alumno
+        role:
+          type: String
+          description: rol del alumno
+        courses:
+          type: Array
+          description: cursos del alumno
+        
+      example:
+        _id: ObjectId("647fa8c9e46dbc5a20320181")
+        name: "Carlos"
+        lastName: "Marco"
+        email: "carlosmarco@as.com"
+        age: 12
+        role: "user"
+        courses: [ObjectId("612fa8c9e46dbc5a20320181"), ObjectId("643fa8c9e46dbc5a20320181")]

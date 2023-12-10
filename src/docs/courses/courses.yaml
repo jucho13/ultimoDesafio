@@ -1,2 +1,70 @@
 #Courses Swagger API Documentation
 #TODO: Agregar documentación del API.
+
+paths:
+  /api/courses/:
+    get:
+      summary: Obtiene todos los courses
+      tags:
+        - Course
+      responses:
+        "200":
+          description: La operacion fue exitosa!, se renderiza.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#components/schemas/course'
+        "400":
+          description: Se envió un dato no esperado.
+        "500":
+          description: Error inesperado del servidor, no se puede manejar el proceso.
+  
+  /api/courses:
+    post:
+      summary: Se envia un course para guardarlo en la api
+      tags:
+        - Course
+      responses:
+        "200":
+          description: La operacion fue exitosa!
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#components/schemas/course'
+        "400":
+          description: Se envió un dato no esperado.
+        "500":
+          description: Error inesperado del servidor, no se puede manejar el proceso.
+  
+  
+components:
+  schemas:
+    course:
+      type: object
+      properties:
+        _id:
+          type: ObjectId
+          description: Id autogenerado de Mongo.
+        title: 
+          type: String
+          description: titulo del curso
+        description:
+          type: String
+          description: descripcion del curso
+        teacherName:
+          type: String
+          description: nombre del profesor/a
+        students:
+          type: Array
+          description: estudiantes del curso
+        
+      example:
+        _id: ObjectId("647fa8c9e46dbc5a20320181")
+        title: "Curso BackEND"
+        description: "NodeJS, expressJS"
+        teacherName: "Walter Salmon"
+        students: [ObjectId("612fa8c9e46dbc5a20320181"), ObjectId("643fa8c9e46dbc5a20320181")]

@@ -25,7 +25,7 @@ const app = express();
 //Preparar la configuracion del servidor para recibir objetos JSON.
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
-
+app.use(addLogger);
 /**
  * Template engine
  */
@@ -33,6 +33,7 @@ app.engine('handlebars',handlebars.engine());
 app.set('views',__dirname+'/views');
 app.set('view engine','handlebars');
 app.use(express.static(__dirname+'/public'))
+
 
 //(Solo si usar Cookies): inicializar el cookie parser.
 app.use(cookieParser("CoderS3cr3tC0d3"));
